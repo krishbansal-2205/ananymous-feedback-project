@@ -52,7 +52,7 @@ function page() {
             } catch (error) {
                const axiosError = error as AxiosError<ApiResponse>;
                setUsernameMessage(
-                  axiosError.response?.data.message ?? 'Error checking username'
+                  axiosError.response?.data.message || 'Error checking username'
                );
             } finally {
                setIsCheckingUsername(false);

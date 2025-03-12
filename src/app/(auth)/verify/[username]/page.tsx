@@ -34,7 +34,7 @@ function VerifyAccount() {
             username,
             verifyCode: data.verifyCode,
          });
-         toast('Success', { description: response.data.message });
+         toast(response.data.message)
          router.replace('/signin');
       } catch (error) {
          console.error('Error verifying account', error);

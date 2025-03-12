@@ -10,7 +10,6 @@ import { ApiResponse } from '@/types/ApiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import { Loader2, RefreshCcw } from 'lucide-react';
-import { set } from 'mongoose';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useState } from 'react';
@@ -76,12 +75,12 @@ function page() {
       if (!session || !session.user) return;
       fetchMessages();
       fetchAcceptMessage();
-   }, [setValue,fetchMessages, fetchAcceptMessage]);
+   }, []);
 
    const handleSwitchChange = async () => {
       try {
          const response = await axios.post<ApiResponse>('/api/accept-message', {
-            acceptMessage: acceptMessages,
+            acceptMessage: !acceptMessages,
          });
          setValue('acceptMessages', !acceptMessages);
          toast(response.data.message);
